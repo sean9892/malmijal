@@ -9,25 +9,34 @@ import { RightPanel } from "./RightPanel.tsx"
 
 export function ImageGenerate() {
   return (
-    <div className="min-h-0 w-full">
-        <ResizablePanelGroup
+    <div className="h-full min-h-0 w-full overflow-hidden">
+      <ResizablePanelGroup
         orientation="horizontal"
-        className="w-full h-full"
+        className="h-full w-full"
+      >
+        <ResizablePanel
+          defaultSize="50%"
+          className="min-h-0 overflow-hidden"
         >
-            <ResizablePanel defaultSize="50%">
-                <div className="flex w-full items-center justify-center">
-                    <LeftPanel />
-                </div>
-            </ResizablePanel>
+          <div className="flex h-full min-h-0 w-full items-center justify-center">
+            <LeftPanel />
+          </div>
+        </ResizablePanel>
 
-            <ResizableHandle withHandle className="bg-slate-200 dark:bg-slate-700" />
+        <ResizableHandle
+          withHandle
+          className="bg-slate-200 dark:bg-slate-700"
+        />
 
-            <ResizablePanel defaultSize="50%">
-                <div className="flex w-full items-center justify-center">
-                    <RightPanel />
-                </div>
-            </ResizablePanel>
-        </ResizablePanelGroup>
+        <ResizablePanel
+          defaultSize="50%"
+          className="min-h-0 overflow-hidden"
+        >
+          <div className="flex h-full min-h-0 w-full items-center justify-center">
+            <RightPanel />
+          </div>
+        </ResizablePanel>
+      </ResizablePanelGroup>
     </div>
   )
 }
