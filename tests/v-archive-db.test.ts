@@ -36,7 +36,6 @@ function response(
 
   return {
     success: true,
-    userNo: 7,
     nickname,
     button,
     count: 1,
