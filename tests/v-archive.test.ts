@@ -59,12 +59,39 @@ describe("V-ARCHIVE client", () => {
     expect(source[0]?.name).toBe("null")
   })
 
+  test("accepts official V2 success responses without userNo", async () => {
+    const fetcher = vi.fn().mockResolvedValue(
+      new Response(
+        JSON.stringify({
+          success: true,
+          nickname: "DJ Max",
+          button: 4,
+          count: 1,
+          records: [record("official shape", 1.7)],
+        }),
+        {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+        }
+      )
+    )
+
+    await expect(
+      fetchVArchiveRecords("DJ Max", 4, { fetcher })
+    ).resolves.toMatchObject({
+      success: true,
+      nickname: "DJ Max",
+      button: 4,
+      count: 1,
+      records: [expect.objectContaining({ name: "official shape" })],
+    })
+  })
+
   test("validates and returns a sorted successful response", async () => {
     const fetcher = vi.fn().mockResolvedValue(
       new Response(
         JSON.stringify({
           success: true,
-          userNo: 7,
           nickname: "DJ Max",
           button: 4,
           count: 2,
@@ -121,7 +148,6 @@ describe("V-ARCHIVE client", () => {
       new Response(
         JSON.stringify({
           success: true,
-          userNo: 7,
           nickname: "DJ Max",
           button: 5,
           count: 0,

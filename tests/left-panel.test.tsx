@@ -64,7 +64,6 @@ function successResponse(
   return new Response(
     JSON.stringify({
       success: true,
-      userNo: 7,
       nickname,
       button,
       count: records.length,

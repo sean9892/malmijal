@@ -23,7 +23,6 @@ export type VArchiveRecord = {
 
 export type VArchiveResponse = {
   success: true
-  userNo: number
   nickname: string
   button: VArchiveButton
   count: number
@@ -146,7 +145,6 @@ function parseSuccess(
   if (
     !isObject(payload) ||
     payload.success !== true ||
-    typeof payload.userNo !== "number" ||
     typeof payload.nickname !== "string" ||
     payload.button !== requestedButton ||
     typeof payload.count !== "number" ||
@@ -158,7 +156,6 @@ function parseSuccess(
 
   return {
     success: true,
-    userNo: payload.userNo,
     nickname: payload.nickname,
     button: requestedButton,
     count: payload.count,
