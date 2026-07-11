@@ -110,6 +110,7 @@ describe("LeftPanel", () => {
       successResponse("Alice", 4, [
         record("Unrated", null),
         record("Top Song", 2.2, {
+          title: 12345,
           pattern: "SC",
           level: 15,
           floorName: "17.3",
@@ -126,6 +127,14 @@ describe("LeftPanel", () => {
     await user.click(screen.getByRole("button", { name: "Search" }))
 
     const items = await screen.findAllByRole("listitem")
+    const topJacket = within(items[0]!).getByRole("img", {
+      name: "Top Song jacket",
+    })
+    expect(topJacket).toHaveAttribute(
+      "src",
+      "https://v-archive.net/s3/images/jackets/12345.jpg"
+    )
+    expect(items[0]!.firstElementChild).toContainElement(topJacket)
     expect(within(items[0]!).getByText("Top Song")).toBeVisible()
     expect(within(items[1]!).getByText("Second Song")).toBeVisible()
     expect(within(items[2]!).getByText("Unrated")).toBeVisible()

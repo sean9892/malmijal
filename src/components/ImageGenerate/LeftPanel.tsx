@@ -10,6 +10,7 @@ import {
   ItemContent,
   ItemDescription,
   ItemGroup,
+  ItemMedia,
   ItemTitle,
 } from "@/components/ui/item"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -128,6 +129,13 @@ function Results({
           variant="outline"
           className="items-start"
         >
+          <ItemMedia variant="image" className="mt-0.5">
+            <img
+              src={`https://v-archive.net/s3/images/jackets/${record.title}.jpg`}
+              alt={`${record.name} jacket`}
+              loading="lazy"
+            />
+          </ItemMedia>
           <ItemContent className="min-w-0">
             <ItemTitle className="w-full min-w-0">
               <span className="w-6 shrink-0 text-right text-muted-foreground tabular-nums">
