@@ -40,7 +40,7 @@ type FetchOptions = {
 }
 
 const PATTERNS: VArchivePattern[] = ["NM", "HD", "MX", "SC"]
-const API_ROOT = "https://v-archive.net/api/v2/archive"
+const API_ROOT = "https://cloudflare-cors-anywhere.sean9892.workers.dev/?https://v-archive.net/api/v2/archive"
 
 export class VArchiveApiError extends Error {
   readonly status: number
