@@ -70,8 +70,6 @@ export function buildVArchiveUrl(
   button: VArchiveButton
 ) {
   const path =
-    PROXY_URL +
-    "/?" +
     API_ROOT +
     "/" +
     encodeURIComponent(nickname.trim()) +
@@ -80,7 +78,7 @@ export function buildVArchiveUrl(
   const url = new URL(path)
   url.searchParams.set("sort", "rating")
   url.searchParams.set("order", "desc")
-  return url.toString()
+  return PROXY_URL +"/?"+url.toString()
 }
 
 export function sortVArchiveRecords(records: VArchiveRecord[]) {
