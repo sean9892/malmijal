@@ -78,7 +78,7 @@ export function buildVArchiveUrl(
   const url = new URL(path)
   url.searchParams.set("sort", "rating")
   url.searchParams.set("order", "desc")
-  return PROXY_URL +"/?"+url.toString()
+  return PROXY_URL +"/"+url.toString()
 }
 
 export function sortVArchiveRecords(records: VArchiveRecord[]) {
