@@ -109,7 +109,7 @@ describe("LeftPanel", () => {
     fetchMock().mockResolvedValueOnce(
       successResponse("Alice", 4, [
         record("Unrated", null),
-        record("Top Song", 2.2, {
+        record("Top Song", 171.234, {
           title: 12345,
           pattern: "SC",
           level: 15,
@@ -138,10 +138,14 @@ describe("LeftPanel", () => {
     expect(within(items[0]!).getByText("Top Song")).toBeVisible()
     expect(within(items[1]!).getByText("Second Song")).toBeVisible()
     expect(within(items[2]!).getByText("Unrated")).toBeVisible()
-    expect(screen.getByText("SC 15")).toBeVisible()
+    const scBadge = screen.getByText("SC 15")
+    expect(scBadge).toBeVisible()
+    expect(scBadge).toHaveClass("bg-primary", "text-primary-foreground")
     expect(screen.getByText("17.3")).toBeVisible()
     expect(screen.getByText("Unranked")).toBeVisible()
-    expect(screen.getByText("Rating —")).toBeVisible()
+    expect(items[0]!).toHaveTextContent("Score: 99.50%")
+    expect(items[0]!).toHaveTextContent("Rating: 171.23")
+    expect(items[2]!).toHaveTextContent("Rating: —")
     expect(databaseMocks.clear).toHaveBeenCalledWith("Alice")
     expect(databaseMocks.save).toHaveBeenCalledWith(
       "Alice",

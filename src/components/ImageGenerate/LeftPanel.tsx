@@ -43,8 +43,12 @@ function initialModeStates(): ModeStates {
   }
 }
 
-function metric(value: number) {
-  return value.toFixed(4)
+function formatScore(value: number) {
+  return value.toFixed(2) + "%"
+}
+
+function formatRating(value: number) {
+  return value.toFixed(2)
 }
 
 function isAbortError(error: unknown) {
@@ -144,15 +148,15 @@ function Results({
               <span className="truncate">{record.name}</span>
             </ItemTitle>
             <ItemDescription className="flex flex-wrap items-center gap-2">
-              <Badge variant="secondary">
+              <Badge variant={record.pattern === "SC" ? "default" : "secondary"}>
                 {record.pattern} {record.level}
               </Badge>
               <Badge variant="outline">{record.floorName ?? "Unranked"}</Badge>
               <span className="ml-auto tabular-nums">
-                Score {metric(record.score)}
+                <span className="font-bold">Score</span>: {formatScore(record.score)}
               </span>
               <span className="tabular-nums">
-                Rating {record.rating === null ? "—" : metric(record.rating)}
+                <span className="font-bold">Rating</span>: {record.rating === null ? "—" : formatRating(record.rating)}
               </span>
             </ItemDescription>
           </ItemContent>
