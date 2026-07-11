@@ -10,7 +10,7 @@ const container = document.getElementById("root") as HTMLElement;
 container.classList.add("min-w-screen","min-h-dvh")
 createRoot(container).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <ThemeProvider>
         <App />
       </ThemeProvider>
